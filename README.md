@@ -10,13 +10,33 @@ Recomendado:
 node server.js
 ```
 
-Después abre:
+Después abre la página de inicio:
 
 ```text
 http://127.0.0.1:8000
 ```
 
 Abrir `index.html` directamente como `file://` puede provocar avisos de seguridad del navegador.
+
+La playlist está en:
+
+```text
+http://127.0.0.1:8000/#playlist
+```
+
+La página de recuerdos está en:
+
+```text
+http://127.0.0.1:8000/#recuerdos
+```
+
+El poemario está en:
+
+```text
+http://127.0.0.1:8000/#poemario
+```
+
+Usa los enlaces con `#playlist` y `#recuerdos` desde la página inicial para navegar sin recargar. Así, si hay una canción reproduciéndose, seguirá sonando al cambiar de sección. Los archivos `playlist.html` y `recuerdos.html` siguen existiendo como acceso directo de respaldo, pero al navegar entre archivos HTML el navegador corta el audio.
 
 ## Despliegue con GitHub y Netlify
 
@@ -112,9 +132,58 @@ Tercera línea de la letra`,
 
 La vista `Letra` respetará los saltos de línea. La vista `Explicación` seguirá usando el campo `story`.
 
+## Cómo añadir recuerdos
+
+Edita `recuerdos.js`. Cada recuerdo tiene esta forma:
+
+```js
+{
+  date: "2026-05-12",
+  title: "Título del recuerdo",
+  text: "Texto del recuerdo",
+  image: "assets/mi-foto.jpg",
+  imageFit: "contain",
+  imageAlt: "Descripción breve de la imagen"
+}
+```
+
+La fecha debe ir como `AAAA-MM-DD`. Las tarjetas se ordenan automáticamente de más antiguo a más reciente.
+
+Si no quieres imagen, deja:
+
+```js
+image: "",
+imageAlt: ""
+```
+
+Por defecto usa `imageFit: "contain"` para que la imagen se vea completa aunque sea vertical o tenga una proporción rara. Si alguna foto quieres que rellene el hueco aunque se recorte un poco, usa:
+
+```js
+imageFit: "cover"
+```
+
+## Cómo añadir poemas
+
+Edita `poemas.js`. Cada poema tiene esta forma:
+
+```js
+{
+  title: "Título del poema",
+  text: `Primer verso
+Segundo verso
+Tercer verso`
+}
+```
+
+Cada poema aparece como una tarjeta en `#poemario`. Al pulsarla, se abre una tarjeta superpuesta con el texto completo y se puede cerrar con la `X`, haciendo clic fuera o pulsando `Escape`.
+
 ## Archivos principales
 
 - `index.html`: estructura de la página.
+- `playlist.html`: página de la playlist.
+- `recuerdos.html`: página de recuerdos.
+- `recuerdos.js`: datos de recuerdos ordenados por fecha.
+- `poemas.js`: datos del poemario.
 - `styles.css`: diseño responsive.
 - `app.js`: datos de la playlist, búsqueda, selección de canciones y reproductor.
 - `server.js`: servidor local mínimo para probar la página sin restricciones de `file://`.

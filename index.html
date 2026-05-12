@@ -6,93 +6,175 @@
     <title>Una playlist especial</title>
     <link rel="stylesheet" href="styles.css">
   </head>
-  <body>
-    <div class="app-shell">
-      <aside class="sidebar" aria-label="Lista de canciones">
-        <div class="brand">
-          <span class="brand-mark" aria-hidden="true">♪</span>
-          <div>
-            <p class="eyebrow">Playlist</p>
-            <h1>Una playlist especial</h1>
-          </div>
-        </div>
-
-        <label class="search">
-          <span>Buscar</span>
-          <input id="searchInput" type="search" placeholder="Canción, artista o recuerdo">
-        </label>
-
-        <div class="theme-picker" aria-label="Color de la página">
-          <span>Color</span>
-          <div class="theme-options">
-            <button class="theme-button rose active" type="button" data-theme="rose" aria-label="Tema rosa"></button>
-            <button class="theme-button blue" type="button" data-theme="blue" aria-label="Tema azul suave"></button>
-          </div>
-        </div>
-
-        <div class="counter" id="counter"></div>
-        <nav class="track-list" id="trackList"></nav>
-      </aside>
-
-      <main class="main-view">
-        <section class="hero">
-          <img src="assets/wallpaper.jpeg" alt="Auriculares y notas manuscritas sobre una mesa iluminada con luz suave.">
-          <div class="hero-copy">
-            <h2>Una playlist especial</h2>
-            <p>A ver, lo del PDF estaba guay, pero para algo soy informático, ¿no? </p>
+  <body class="home-page">
+    <section id="homeView" class="site-view">
+      <main class="home-shell">
+        <section class="home-hero" aria-labelledby="homeTitle">
+          <img id="homeWallpaper" src="assets/pink_wallpaper.jpg" alt="Fondo cálido y suave para una página personal.">
+          <div class="home-hero-content">
+            <div class="theme-picker home-theme-picker" aria-label="Color de la página">
+              <span>Color</span>
+              <div class="theme-options">
+                <button class="theme-button rose active" type="button" data-theme="rose" aria-label="Tema rosa"></button>
+                <button class="theme-button blue" type="button" data-theme="blue" aria-label="Tema azul suave"></button>
+              </div>
+            </div>
+            <h1 id="homeTitle">Un sitio pequeño para algo grande</h1>
+            <p>A ver, lo del PDF y la playlist estaba guay, pero para algo soy informático, ¿no? Este es un espacio dedicado a nuestro camino, nuestra playlist y nuestros recuerdos.</p>
           </div>
         </section>
 
-        <section class="player-panel" aria-label="Reproductor">
-          <div class="now-playing">
-            <p class="eyebrow" id="trackNumber">Canción 1</p>
-            <h3 id="trackTitle"></h3>
-            <p id="trackArtist"></p>
-          </div>
+        <section class="section-grid" aria-label="Secciones disponibles">
+          <a class="section-card available" href="#playlist">
+            <span class="section-icon" aria-hidden="true">♪</span>
+            <span>
+              <span class="section-kicker">Disponible</span>
+              <strong>Playlist</strong>
+              <small>Canciones, reproductor, explicación y letra.</small>
+            </span>
+          </a>
 
-          <div class="custom-player">
-            <audio id="audioPlayer" preload="metadata"></audio>
-            <button id="playButton" class="play-button" type="button" aria-label="Reproducir">▶</button>
-            <div class="progress-wrap">
-              <button id="progressBar" class="progress-bar" type="button" aria-label="Cambiar posición de la canción">
-                <span id="progressFill" class="progress-fill"></span>
-                <span id="jellyfishMarker" class="jellyfish-marker" aria-hidden="true">
-                  <svg viewBox="0 0 32 32" focusable="false">
-                    <path d="M8 15c0-5 3.5-9 8-9s8 4 8 9H8Z"></path>
-                    <path d="M9 15c0 3 3 5 7 5s7-2 7-5"></path>
-                    <path d="M11 20c-2 3 2 4 0 7"></path>
-                    <path d="M16 20c-2 3 2 4 0 7"></path>
-                    <path d="M21 20c-2 3 2 4 0 7"></path>
-                  </svg>
-                </span>
-              </button>
-              <div class="time-row">
-                <span id="currentTime">0:00</span>
-                <span id="durationTime">0:00</span>
-              </div>
+          <a class="section-card available" href="#recuerdos">
+            <span class="section-icon" aria-hidden="true">✦</span>
+            <span>
+              <span class="section-kicker">Disponible</span>
+              <strong>Recuerdos</strong>
+              <small>Fotos, fechas y pequeñas historias en orden cronológico.</small>
+            </span>
+          </a>
+
+          <a class="section-card available" href="#poemario">
+            <span class="section-icon" aria-hidden="true">♡</span>
+            <span>
+              <span class="section-kicker">Disponible</span>
+              <strong>Poemario</strong>
+              <small>Poemas en tarjetas para abrir y leer con calma.</small>
+            </span>
+          </a>
+        </section>
+      </main>
+    </section>
+
+    <section id="playlistView" class="site-view" hidden>
+      <div class="app-shell">
+        <aside class="sidebar" aria-label="Lista de canciones">
+          <div class="brand">
+            <span class="brand-mark" aria-hidden="true">♪</span>
+            <div>
+              <p class="eyebrow">Playlist</p>
+              <h1>Una playlist especial</h1>
             </div>
           </div>
 
-          <div class="actions">
-            <a id="youtubeLink" class="button primary" target="_blank" rel="noreferrer">YouTube</a>
-            <a id="spotifyLink" class="button" target="_blank" rel="noreferrer">Spotify</a>
-            <button id="copyButton" class="button" type="button">Copiar título</button>
-          </div>
+          <a class="back-link sidebar-link" href="#inicio">Volver al inicio</a>
 
-          <p class="audio-note" id="audioNote"></p>
-        </section>
+          <label class="search">
+            <span>Buscar</span>
+            <input id="searchInput" type="search" placeholder="Canción, artista o recuerdo">
+          </label>
 
-        <article class="story">
-          <h2 id="storyTitle"></h2>
-          <div class="content-tabs" aria-label="Vista del texto">
-            <button id="storyTab" class="content-tab active" type="button" data-view="story">Explicación</button>
-            <button id="lyricsTab" class="content-tab" type="button" data-view="lyrics">Letra</button>
-          </div>
-          <div id="storyText"></div>
-        </article>
+          <div class="counter" id="counter"></div>
+          <nav class="track-list" id="trackList"></nav>
+        </aside>
+
+        <main class="main-view">
+          <section class="hero">
+            <img src="assets/wallpaper.jpeg" alt="Auriculares y notas manuscritas sobre una mesa iluminada con luz suave.">
+            <div class="hero-copy">
+              <h2>Una playlist especial</h2>
+              <p>A ver, lo del PDF estaba guay, pero para algo soy informático, ¿no?</p>
+            </div>
+          </section>
+
+          <section class="player-panel" aria-label="Reproductor">
+            <div class="now-playing">
+              <p class="eyebrow" id="trackNumber">Canción 1</p>
+              <h3 id="trackTitle"></h3>
+              <p id="trackArtist"></p>
+            </div>
+
+            <div class="custom-player">
+              <audio id="audioPlayer" preload="metadata"></audio>
+              <button id="playButton" class="play-button" type="button" aria-label="Reproducir">▶</button>
+              <div class="progress-wrap">
+                <button id="progressBar" class="progress-bar" type="button" aria-label="Cambiar posición de la canción">
+                  <span id="progressFill" class="progress-fill"></span>
+                  <span id="jellyfishMarker" class="jellyfish-marker" aria-hidden="true">
+                    <svg viewBox="0 0 32 32" focusable="false">
+                      <path d="M8 15c0-5 3.5-9 8-9s8 4 8 9H8Z"></path>
+                      <path d="M9 15c0 3 3 5 7 5s7-2 7-5"></path>
+                      <path d="M11 20c-2 3 2 4 0 7"></path>
+                      <path d="M16 20c-2 3 2 4 0 7"></path>
+                      <path d="M21 20c-2 3 2 4 0 7"></path>
+                    </svg>
+                  </span>
+                </button>
+                <div class="time-row">
+                  <span id="currentTime">0:00</span>
+                  <span id="durationTime">0:00</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="actions">
+              <a id="youtubeLink" class="button primary" target="_blank" rel="noreferrer">YouTube</a>
+              <a id="spotifyLink" class="button" target="_blank" rel="noreferrer">Spotify</a>
+              <button id="copyButton" class="button" type="button">Copiar título</button>
+            </div>
+
+            <p class="audio-note" id="audioNote"></p>
+          </section>
+
+          <article class="story">
+            <h2 id="storyTitle"></h2>
+            <div class="content-tabs" aria-label="Vista del texto">
+              <button id="storyTab" class="content-tab active" type="button" data-view="story">Explicación</button>
+              <button id="lyricsTab" class="content-tab" type="button" data-view="lyrics">Letra</button>
+            </div>
+            <div id="storyText"></div>
+          </article>
+        </main>
+      </div>
+    </section>
+
+    <section id="memoriesView" class="site-view" hidden>
+      <main class="memories-shell">
+        <header class="memories-header">
+          <a class="back-link" href="#inicio">Volver al inicio</a>
+          <p class="eyebrow">Cronología</p>
+          <h1>Recuerdos</h1>
+          <p>Un recorrido por los momentos más importantes de nuestro camino.</p>
+        </header>
+
+        <section id="memoriesList" class="memories-list" aria-label="Lista de recuerdos"></section>
       </main>
+    </section>
+
+    <section id="poemsView" class="site-view" hidden>
+      <main class="poems-shell">
+        <header class="memories-header">
+          <a class="back-link" href="#inicio">Volver al inicio</a>
+          <p class="eyebrow">Poemario</p>
+          <h1>Poemario</h1>
+          <p>Todos los poemas que te he escrito alguna vez, te los haya mandado o no.</p>
+        </header>
+
+        <section id="poemsList" class="poems-grid" aria-label="Lista de poemas"></section>
+      </main>
+    </section>
+
+    <div id="poemOverlay" class="poem-overlay" hidden>
+      <article class="poem-modal" role="dialog" aria-modal="true" aria-labelledby="poemModalTitle">
+        <button id="closePoemButton" class="poem-close" type="button" aria-label="Cerrar poema">×</button>
+        <p class="eyebrow">Poema</p>
+        <h2 id="poemModalTitle"></h2>
+        <div id="poemModalText" class="poem-modal-text"></div>
+      </article>
     </div>
 
+    <script src="recuerdos.js"></script>
+    <script src="poemas.js"></script>
     <script src="app.js"></script>
+    <script src="site.js"></script>
   </body>
 </html>

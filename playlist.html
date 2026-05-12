@@ -1,0 +1,93 @@
+﻿<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Una playlist especial</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar" aria-label="Lista de canciones">
+        <div class="brand">
+          <span class="brand-mark" aria-hidden="true">♪</span>
+          <div>
+            <p class="eyebrow">Playlist</p>
+            <h1>Una playlist especial</h1>
+          </div>
+        </div>
+
+        <a class="back-link sidebar-link" href="index.html">Volver al inicio</a>
+
+        <label class="search">
+          <span>Buscar</span>
+          <input id="searchInput" type="search" placeholder="Canción, artista o recuerdo">
+        </label>
+
+        <div class="counter" id="counter"></div>
+        <nav class="track-list" id="trackList"></nav>
+      </aside>
+
+      <main class="main-view">
+        <section class="hero">
+          <img src="assets/wallpaper.jpeg" alt="Auriculares y notas manuscritas sobre una mesa iluminada con luz suave.">
+          <div class="hero-copy">
+            <h2>Una playlist especial</h2>
+            <p>A ver, lo del PDF estaba guay, pero para algo soy informático, ¿no? </p>
+          </div>
+        </section>
+
+        <section class="player-panel" aria-label="Reproductor">
+          <div class="now-playing">
+            <p class="eyebrow" id="trackNumber">Canción 1</p>
+            <h3 id="trackTitle"></h3>
+            <p id="trackArtist"></p>
+          </div>
+
+          <div class="custom-player">
+            <audio id="audioPlayer" preload="metadata"></audio>
+            <button id="playButton" class="play-button" type="button" aria-label="Reproducir">▶</button>
+            <div class="progress-wrap">
+              <button id="progressBar" class="progress-bar" type="button" aria-label="Cambiar posición de la canción">
+                <span id="progressFill" class="progress-fill"></span>
+                <span id="jellyfishMarker" class="jellyfish-marker" aria-hidden="true">
+                  <svg viewBox="0 0 32 32" focusable="false">
+                    <path d="M8 15c0-5 3.5-9 8-9s8 4 8 9H8Z"></path>
+                    <path d="M9 15c0 3 3 5 7 5s7-2 7-5"></path>
+                    <path d="M11 20c-2 3 2 4 0 7"></path>
+                    <path d="M16 20c-2 3 2 4 0 7"></path>
+                    <path d="M21 20c-2 3 2 4 0 7"></path>
+                  </svg>
+                </span>
+              </button>
+              <div class="time-row">
+                <span id="currentTime">0:00</span>
+                <span id="durationTime">0:00</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="actions">
+            <a id="youtubeLink" class="button primary" target="_blank" rel="noreferrer">YouTube</a>
+            <a id="spotifyLink" class="button" target="_blank" rel="noreferrer">Spotify</a>
+            <button id="copyButton" class="button" type="button">Copiar título</button>
+          </div>
+
+          <p class="audio-note" id="audioNote"></p>
+        </section>
+
+        <article class="story">
+          <h2 id="storyTitle"></h2>
+          <div class="content-tabs" aria-label="Vista del texto">
+            <button id="storyTab" class="content-tab active" type="button" data-view="story">Explicación</button>
+            <button id="lyricsTab" class="content-tab" type="button" data-view="lyrics">Letra</button>
+          </div>
+          <div id="storyText"></div>
+        </article>
+      </main>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>
+

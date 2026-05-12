@@ -1959,6 +1959,7 @@ const youtubeLink = document.querySelector("#youtubeLink");
 const spotifyLink = document.querySelector("#spotifyLink");
 const copyButton = document.querySelector("#copyButton");
 const themeButtons = document.querySelectorAll(".theme-button");
+const homeWallpaper = document.querySelector("#homeWallpaper");
 const playButton = document.querySelector("#playButton");
 const progressBar = document.querySelector("#progressBar");
 const progressFill = document.querySelector("#progressFill");
@@ -1984,6 +1985,9 @@ function applyTheme(theme) {
   themeButtons.forEach((button) => {
     button.classList.toggle("active", button.dataset.theme === theme);
   });
+  if (homeWallpaper) {
+    homeWallpaper.src = theme === "blue" ? "assets/wallpaper.jpeg" : "assets/pink_wallpaper.jpg";
+  }
   try {
     localStorage.setItem("playlist-theme", theme);
   } catch {
@@ -2189,5 +2193,4 @@ contentTabs.forEach((tab) => {
 
 applyTheme(savedTheme);
 selectTrack(0);
-
 
