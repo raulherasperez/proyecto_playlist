@@ -1969,6 +1969,7 @@ const durationTimeLabel = document.querySelector("#durationTime");
 const contentTabs = document.querySelectorAll(".content-tab");
 
 let selectedIndex = 0;
+let audioIndex = null;
 let activeContentView = "story";
 const savedTheme = getSavedTheme();
 
@@ -2034,8 +2035,13 @@ function updateProgress() {
 }
 
 function updatePlayButton() {
-  playButton.textContent = audioPlayer.paused ? "▶" : "Ⅱ";
-  playButton.setAttribute("aria-label", audioPlayer.paused ? "Reproducir" : "Pausar");
+  const selectedAudioIsLoaded = audioIndex === selectedIndex;
+
+  playButton.textContent = selectedAudioIsLoaded && !audioPlayer.paused ? "Ⅱ" : "▶";
+  playButton.setAttribute(
+    "aria-label",
+    selectedAudioIsLoaded && !audioPlayer.paused ? "Pausar" : "Reproducir canción seleccionada"
+  );
 }
 
 function renderStoryBlock(block) {
@@ -2079,6 +2085,37 @@ function storyAsText(track) {
   return `${track.story.map((block) => block.text).join(" ")} ${track.lyrics || ""}`;
 }
 
+function updateAudioNote() {
+  if (audioIndex === null || audioIndex === selectedIndex) {
+    audioNote.textContent = "";
+    return;
+  }
+
+  const playingTrack = tracks[audioIndex];
+  const selectedTrack = tracks[selectedIndex];
+  audioNote.textContent = audioPlayer.paused
+    ? `Pulsa reproducir para escuchar ${selectedTrack.title}.`
+    : `Sigue sonando ${playingTrack.title}. Pulsa reproducir para cambiar a ${selectedTrack.title}.`;
+}
+
+function loadSelectedAudio({ autoplay = false } = {}) {
+  const track = tracks[selectedIndex];
+  audioIndex = selectedIndex;
+  audioPlayer.src = track.file;
+  audioPlayer.load();
+  updateProgress();
+  updatePlayButton();
+  updateAudioNote();
+
+  if (!autoplay) {
+    return;
+  }
+
+  audioPlayer.play().catch(() => {
+    audioNote.textContent = "Pulsa reproducir para continuar con la canción seleccionada.";
+  });
+}
+
 function renderList() {
   const query = normalize(searchInput.value.trim());
   const visibleTracks = tracks
@@ -2118,11 +2155,12 @@ function selectTrack(index) {
   storyTitle.textContent = label;
   renderSelectedContent();
 
-  audioPlayer.src = track.file;
-  audioPlayer.load();
-  updateProgress();
+  if (audioIndex === null) {
+    loadSelectedAudio();
+  }
+
   updatePlayButton();
-  audioNote.textContent = "";
+  updateAudioNote();
   youtubeLink.href = track.youtube || searchUrl("https://www.youtube.com/results?search_query=", track);
   spotifyLink.href = track.spotify || searchUrl("https://open.spotify.com/search/", track);
   if (copyButton) {
@@ -2133,17 +2171,25 @@ function selectTrack(index) {
 }
 
 audioPlayer.addEventListener("error", () => {
-  const track = tracks[selectedIndex];
+  const track = tracks[audioIndex ?? selectedIndex];
   audioNote.textContent = `No encuentro ${track.file}. Puedes crear la carpeta audio y añadir el MP3 con ese nombre, o escucharla con los botones.`;
 });
 
 audioPlayer.addEventListener("loadedmetadata", updateProgress);
 audioPlayer.addEventListener("timeupdate", updateProgress);
 audioPlayer.addEventListener("play", updatePlayButton);
+audioPlayer.addEventListener("play", updateAudioNote);
 audioPlayer.addEventListener("pause", updatePlayButton);
+audioPlayer.addEventListener("pause", updateAudioNote);
 audioPlayer.addEventListener("ended", updatePlayButton);
+audioPlayer.addEventListener("ended", updateAudioNote);
 
 playButton.addEventListener("click", async () => {
+  if (audioIndex !== selectedIndex) {
+    loadSelectedAudio({ autoplay: true });
+    return;
+  }
+
   if (audioPlayer.paused) {
     try {
       await audioPlayer.play();
@@ -2193,4 +2239,3 @@ contentTabs.forEach((tab) => {
 
 applyTheme(savedTheme);
 selectTrack(0);
-
