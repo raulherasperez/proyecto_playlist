@@ -919,6 +919,17 @@ code {
   white-space: pre-line;
 }
 
+.story-image {
+  display: block;
+  width: min(100%, 520px);
+  max-height: 520px;
+  margin: 24px 0 0;
+  border-radius: 8px;
+  object-fit: contain;
+  background: var(--track-active-bg);
+  box-shadow: var(--panel-shadow);
+}
+
 .full-lyrics {
   max-width: 74ch;
   margin: 0;

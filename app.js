@@ -1195,7 +1195,8 @@ No tengo una mansión, vivo en un piso pequeño
 Con una habitación, pero si quieres venir
 Tú solo dímelo y te ayudo a meter tus cosas en cajas de cartón`,
     story: [
-      { type: "p", text: "Si había una canción tan evidente de ser merecedora de estar aquí, era esta, aunque por alguna razón no la he añadido hasta ahora. La letra es self explanatory, y es que se llama Milhouse, por favor, cómo no iba a estar aquí. Venga, voy a romper un poco la estética y añadir un frame de Los Simpsons para que relaciones la letra con el personaje." }
+      { type: "p", text: "Si había una canción tan evidente de ser merecedora de estar aquí, era esta, aunque por alguna razón no la he añadido hasta ahora. La letra es self explanatory, y es que se llama Milhouse, por favor, cómo no iba a estar aquí. Venga, voy a romper un poco la estética y añadir un frame de Los Simpsons para que relaciones la letra con el personaje." },
+      { type: "image", src: "assets/milhouse.jpg", alt: "Frame de Milhouse de Los Simpsons." }
     ]
   },
   {
@@ -2045,6 +2046,12 @@ function updatePlayButton() {
 }
 
 function renderStoryBlock(block) {
+  if (block.type === "image") {
+    const src = escapeHtml(block.src);
+    const alt = escapeHtml(block.alt || "");
+    return `<img class="story-image" src="${src}" alt="${alt}">`;
+  }
+
   const text = escapeHtml(block.text);
 
   if (block.type === "lyrics") {
