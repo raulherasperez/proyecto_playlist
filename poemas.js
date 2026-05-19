@@ -143,7 +143,7 @@ function escapePoemHtml(value) {
 
 function renderPoemCard(poem, index) {
   return `
-    <button class="poem-card" type="button" data-poem-index="${index}">
+    <button class="poem-card" type="button" data-poem-index="${index}" style="--item-index: ${index}">
       <span class="section-kicker">Poema ${String(index + 1).padStart(2, "0")}</span>
       <strong>${escapePoemHtml(poem.title)}</strong>
       <small>${escapePoemHtml(poem.text.split("\n").find(Boolean) || "Abrir poema")}</small>

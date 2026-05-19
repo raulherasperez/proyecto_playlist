@@ -36,6 +36,12 @@ El poemario está en:
 http://127.0.0.1:8000/#poemario
 ```
 
+La sección "Cosas que me recuerdan a ti" está en:
+
+```text
+http://127.0.0.1:8000/#cosas
+```
+
 Usa los enlaces con `#playlist` y `#recuerdos` desde la página inicial para navegar sin recargar. Así, si hay una canción reproduciéndose, seguirá sonando al cambiar de sección. Los archivos `playlist.html` y `recuerdos.html` siguen existiendo como acceso directo de respaldo, pero al navegar entre archivos HTML el navegador corta el audio.
 
 ## Despliegue con GitHub y Netlify
@@ -177,6 +183,21 @@ Tercer verso`
 
 Cada poema aparece como una tarjeta en `#poemario`. Al pulsarla, se abre una tarjeta superpuesta con el texto completo y se puede cerrar con la `X`, haciendo clic fuera o pulsando `Escape`.
 
+## Cómo añadir cosas que me recuerdan a ti
+
+Edita `cosas.js`. Cada tarjeta tiene esta forma:
+
+```js
+{
+  title: "Título de la tarjeta",
+  image: "assets/mi-imagen.jpg",
+  imageAlt: "Descripción breve de la imagen",
+  text: "Explicación de por qué esta imagen me recuerda a ti."
+}
+```
+
+Al pulsar una foto en `#cosas`, se abre una tarjeta superpuesta con la imagen y el texto completo.
+
 ## Archivos principales
 
 - `index.html`: estructura de la página.
@@ -184,6 +205,7 @@ Cada poema aparece como una tarjeta en `#poemario`. Al pulsarla, se abre una tar
 - `recuerdos.html`: página de recuerdos.
 - `recuerdos.js`: datos de recuerdos ordenados por fecha.
 - `poemas.js`: datos del poemario.
+- `cosas.js`: datos del panel de "Cosas que me recuerdan a ti".
 - `styles.css`: diseño responsive.
 - `app.js`: datos de la playlist, búsqueda, selección de canciones y reproductor.
 - `server.js`: servidor local mínimo para probar la página sin restricciones de `file://`.

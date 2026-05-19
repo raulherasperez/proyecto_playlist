@@ -2,7 +2,8 @@ const siteViews = {
   inicio: document.querySelector("#homeView"),
   playlist: document.querySelector("#playlistView"),
   recuerdos: document.querySelector("#memoriesView"),
-  poemario: document.querySelector("#poemsView")
+  poemario: document.querySelector("#poemsView"),
+  cosas: document.querySelector("#thingsView")
 };
 
 function getRoute() {

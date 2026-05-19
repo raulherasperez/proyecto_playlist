@@ -1954,6 +1954,7 @@ const trackTitle = document.querySelector("#trackTitle");
 const trackArtist = document.querySelector("#trackArtist");
 const storyTitle = document.querySelector("#storyTitle");
 const storyText = document.querySelector("#storyText");
+const storyPanel = document.querySelector(".story");
 const audioPlayer = document.querySelector("#audioPlayer");
 const audioNote = document.querySelector("#audioNote");
 const youtubeLink = document.querySelector("#youtubeLink");
@@ -2086,6 +2087,9 @@ function renderSelectedContent() {
   storyText.innerHTML = activeContentView === "lyrics"
     ? renderLyrics(track)
     : track.story.map(renderStoryBlock).join("");
+  storyPanel.classList.remove("is-changing");
+  void storyPanel.offsetWidth;
+  storyPanel.classList.add("is-changing");
 }
 
 function storyAsText(track) {
@@ -2139,6 +2143,7 @@ function renderList() {
     const button = document.createElement("button");
     button.className = `track-button${index === selectedIndex ? " active" : ""}`;
     button.type = "button";
+    button.style.setProperty("--item-index", trackList.children.length);
     button.innerHTML = `
       <span class="track-index">${index + 1}</span>
       <span>

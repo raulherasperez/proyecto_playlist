@@ -55,6 +55,15 @@
               <small>Poemas en tarjetas para abrir y leer con calma.</small>
             </span>
           </a>
+
+          <a class="section-card available" href="#cosas">
+            <span class="section-icon" aria-hidden="true">◇</span>
+            <span>
+              <span class="section-kicker">Disponible</span>
+              <strong>Cosas que me recuerdan a ti</strong>
+              <small>Un panel de imágenes con pequeñas explicaciones.</small>
+            </span>
+          </a>
         </section>
       </main>
     </section>
@@ -86,7 +95,7 @@
             <img src="assets/wallpaper.jpeg" alt="Auriculares y notas manuscritas sobre una mesa iluminada con luz suave.">
             <div class="hero-copy">
               <h2>Una playlist especial</h2>
-              <p>Pa que tener Spotify si tienes la playlist aquí, con sus textos y su letra y todo.  </p>
+              <p>Pa que tener Spotify si tienes la playlist aquí, con sus textos y su letra y todo.</p>
             </div>
           </section>
 
@@ -167,6 +176,19 @@
       </main>
     </section>
 
+    <section id="thingsView" class="site-view" hidden>
+      <main class="things-shell">
+        <header class="memories-header">
+          <a class="back-link" href="#inicio">Volver al inicio</a>
+          <p class="eyebrow">Galería</p>
+          <h1>Cosas que me recuerdan a ti</h1>
+          <p>Un panel de imágenes que guardan pequeñas asociaciones, detalles y explicaciones.</p>
+        </header>
+
+        <section id="thingsGrid" class="things-grid" aria-label="Cosas que me recuerdan a ti"></section>
+      </main>
+    </section>
+
     <div id="poemOverlay" class="poem-overlay" hidden>
       <article class="poem-modal" role="dialog" aria-modal="true" aria-labelledby="poemModalTitle">
         <button id="closePoemButton" class="poem-close" type="button" aria-label="Cerrar poema">×</button>
@@ -176,8 +198,21 @@
       </article>
     </div>
 
+    <div id="thingOverlay" class="thing-overlay" hidden>
+      <article class="thing-modal" role="dialog" aria-modal="true" aria-labelledby="thingModalTitle">
+        <button id="closeThingButton" class="poem-close" type="button" aria-label="Cerrar tarjeta">×</button>
+        <img id="thingModalImage" class="thing-modal-image" src="" alt="">
+        <div class="thing-modal-body">
+          <p class="eyebrow">Me recuerda a ti</p>
+          <h2 id="thingModalTitle"></h2>
+          <p id="thingModalText"></p>
+        </div>
+      </article>
+    </div>
+
     <script src="recuerdos.js"></script>
     <script src="poemas.js"></script>
+    <script src="cosas.js"></script>
     <script src="app.js"></script>
     <script src="site.js"></script>
   </body>

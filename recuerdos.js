@@ -74,7 +74,7 @@ function renderMemory(memory, index) {
     : "";
 
   return `
-    <article class="memory-card">
+    <article class="memory-card" style="--item-index: ${index}">
       <div class="memory-date">
         <span>${String(index + 1).padStart(2, "0")}</span>
         <time datetime="${escapeHtml(memory.date)}">${escapeHtml(formatDate(memory.date))}</time>
